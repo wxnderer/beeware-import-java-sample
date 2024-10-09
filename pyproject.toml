@@ -173,7 +173,10 @@ build_gradle_dependencies = [
     # "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
     # Needed for MapView
     # "org.osmdroid:osmdroid-android:6.1.0",
+    "com.microsoft.onnxruntime:onnxruntime-android:1.19.2",
 ]
+
+
 
 # Web deployments
 [tool.briefcase.app.javaimporttest.web]

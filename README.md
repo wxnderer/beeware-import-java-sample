@@ -4,7 +4,7 @@ This project demonstrates how to call a Java method from a BeeWare application u
 
 ## How it Works
 
-### Java Code
+### Java Native Date Integration
 
 The `date.py` file contains a Python function `call_java_method()` that uses `jclass` from the `java` module (provided by Chaquopy) to:
 
@@ -12,6 +12,41 @@ The `date.py` file contains a Python function `call_java_method()` that uses `jc
 2. Create an instance of `Date`.
 3. Call the `toString()` method to get the current date and time as a string.
 4. Return the result.
+
+### ONNX Runtime Integration
+
+The `onnx.py` file demonstrates how to integrate ONNX Runtime with Java using Chaquopy. Here's how it works:
+
+1. It imports the `jclass` function from the `java` module provided by Chaquopy.
+2. The `get_onnxruntime_version()` function:
+   - Uses `jclass` to import the `ai.onnxruntime.OrtEnvironment` Java class.
+   - Gets the ONNX Runtime environment using `OrtEnvironment.getEnvironment()`.
+   - Retrieves the version of ONNX Runtime using `env.getVersion()`.
+   - Returns the version string.
+
+### Configuration in pyproject.toml
+
+To use ONNX Runtime with Java in your BeeWare project, you need to add the following configurations to your `pyproject.toml` file:
+
+```toml
+[tool.briefcase.app.javaimporttest.android]
+gradle_dependencies = [
+    "ai.onnxruntime:onnxruntime-android:latest.release"
+]
+
+java_sources = [
+    "src/javaimporttest/java"
+]
+```
+
+This configuration:
+
+- Adds the ONNX Runtime Android library as a Gradle dependency.
+- Specifies the directory containing your Java source files.
+
+Make sure to replace "javaimporttest" with your actual application name in the configuration.
+
+By adding these configurations, you enable your BeeWare application to use ONNX Runtime's Java API through Chaquopy, allowing you to leverage machine learning models in your cross-platform Python application.
 
 ### BeeWare UI
 
