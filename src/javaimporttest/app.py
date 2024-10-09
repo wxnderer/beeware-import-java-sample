@@ -5,6 +5,7 @@ Java Import Test Application
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
+from .java.pymodules.date import call_java_method
 
 class javaImportTest(toga.App):
     def startup(self):
@@ -14,7 +15,7 @@ class javaImportTest(toga.App):
         # Create a button to trigger the Java method call
         button = toga.Button(
             'Get Current Date/Time',
-            on_press=self.call_java_method,
+            on_press=self.set_time,
             style=Pack(padding=5)
         )
 
@@ -30,26 +31,10 @@ class javaImportTest(toga.App):
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
         self.main_window.show()
-
-    def call_java_method(self, widget):
-        """Call a Java method and display the result."""
-        try:
-            # Import the Java class using Chaquopy
-            from java import jclass
-            
-            # Use java.util.Date class
-            Date = jclass('java.util.Date')
-            
-            # Create an instance of Date
-            date_instance = Date()
-            
-            # Call the toString method to get the current date and time
-            result = date_instance.toString()
-            
-            # Update the UI with the result
-            self.result_label.text = f"Current date and time: {result}"
-        except Exception as e:
-            self.result_label.text = f"Error: {str(e)}"
+    def set_time(self, widget):
+        result = call_java_method()        
+        self.result_label.text = f"Current date and time: {result}"
+    
 
 def main():
     return javaImportTest()
