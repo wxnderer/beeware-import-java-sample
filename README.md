@@ -26,23 +26,18 @@ The `onnx.py` file demonstrates how to integrate ONNX Runtime with Java using Ch
 
 ### Configuration in pyproject.toml
 
-To use ONNX Runtime with Java in your BeeWare project, you need to add the following configurations to your `pyproject.toml` file:
+To use ONNX Runtime with Java in your BeeWare project, you need to add the following configuration to your `pyproject.toml` file:
 
-```toml
+
 [tool.briefcase.app.javaimporttest.android]
-gradle_dependencies = [
-    "ai.onnxruntime:onnxruntime-android:latest.release"
+build_gradle_dependencies = [
+    "com.microsoft.onnxruntime:onnxruntime-android:1.19.2"
 ]
 
-java_sources = [
-    "src/javaimporttest/java"
-]
-```
 
 This configuration:
 
 - Adds the ONNX Runtime Android library as a Gradle dependency.
-- Specifies the directory containing your Java source files.
 
 Make sure to replace "javaimporttest" with your actual application name in the configuration.
 
